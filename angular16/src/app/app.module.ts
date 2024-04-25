@@ -14,7 +14,7 @@ import { MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UserprofileComponent } from './userprofile/userprofile.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -37,7 +37,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 MatIconModule,
 MatChipsModule,
     MatFormFieldModule,
-    HttpClient,
     HttpClientModule
   
   ],
