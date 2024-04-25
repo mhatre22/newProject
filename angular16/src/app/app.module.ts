@@ -13,6 +13,8 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { UserprofileComponent } from './userprofile/userprofile.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 
@@ -23,7 +25,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
     JobsComponent,
      AboutComponent,
-     RegisterComponent
+     RegisterComponent,
+     UserprofileComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatSliderModule,
 MatIconModule,
 MatChipsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    HttpClient,
+    HttpClientModule
   
   ],
   providers: [],

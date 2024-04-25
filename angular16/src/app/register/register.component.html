@@ -39,7 +39,7 @@
                     <!--age-->
                     <div class="col-md-4">
                         <label>Age : </label>
-                        <mat-slider min="0" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel">
+                        <mat-slider min="20" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel">
                             <input formControlName="age" matSliderThumb>
                         </mat-slider>
                         <span class="err" *ngIf="registerForm.get('age')?.errors?.['required'] && !registerForm.get('age')?.valid && registerForm.get('age')?.touched">age is required</span>
@@ -91,13 +91,13 @@
                  <div class="row">
                   
                         <mat-chip-grid #chipGrid aria-label>
-                          <mat-chip-row *ngFor="let tag of tags"
+                          <mat-chip-row   class="display-flex"*ngFor="let tag of tags" 
                                         (removed)="remove(tag)"
                                         [editable]="true"
                                         (edited)="edit(tag, $event)"
                                         [aria-description]="'press enter to edit ' + tag.name">
                             {{tag.name}}
-                            <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
+                            <button  matChipRemove [attr.aria-label]="'remove ' + tag.name">
                               <mat-icon>cancel</mat-icon>
                             </button>
                           </mat-chip-row>
