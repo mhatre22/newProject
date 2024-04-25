@@ -16,8 +16,7 @@
                     <!--firstname-->
                     &nbsp;<div class="row">
                         &nbsp;<div class="col-md-4">
-                            <input type="text" class="form-control" placeholder="First Name"
-                                formControlName="firstname">
+                            <input type="text" class="form-control" placeholder="First Name" formControlName="firstname">
                         </div>
                         <span class="err"*ngIf="registerForm.get('firstname')?.errors?.['required'] && !registerForm.get('firstname')?.valid && registerForm.get('firstname')?.touched">firstname
                             is required</span>
@@ -88,7 +87,7 @@
       <input type="text" class="form-control"  formControlName="companyAddress2" placeholder="Comp Add2"><br>
     </div>
      <!---Tag-->
-                 <div class="row">
+                
                   
                         <mat-chip-grid #chipGrid aria-label>
                           <mat-chip-row   class="display-flex"*ngFor="let tag of tags" 
@@ -106,12 +105,14 @@
                                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                  [matChipInputAddOnBlur]="addOnBlur"
                                  (matChipInputTokenEnd)="add($event)"/>
+                                 <span class="err" *ngIf="registerForm.get('tag')?.errors?.['required'] && !registerForm.get('tag')?.valid && registerForm.get('tag')?.touched"> tag is required </span>
+ 
                         </mat-chip-grid>
-                    </div>
+                 
                     </div><br>
                     <input type="checkbox">subscribe to newsletter&nbsp;
-                    <button type="button" (click)=submit() class="btn btn-primary">Register</button>&nbsp;&nbsp;
-                    <button type="button" class="btn btn-light">Cancel</button>&nbsp;
+                    <button (click)="userregister()" class="btn btn-primary">Register</button>&nbsp;&nbsp;
+                    <button  class="btn btn-light">Cancel</button>&nbsp;
                 </form>
             </div>
             </div>

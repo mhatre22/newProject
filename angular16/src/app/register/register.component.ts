@@ -2,8 +2,11 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+import { DataService } from '../data.service';
+import { Router } from '@angular/router';
+
 export interface Tag {
   name: string;
   tags: string;
@@ -14,7 +17,7 @@ export interface Tag {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  registerForm!: FormGroup
+  registerForm! : FormGroup
   countries: String[] = ['India', 'Canada', 'USA', 'Australia', 'America', 'Kenia']
   states: String[] = ['Maharashtra', 'Goa', 'Bihar', 'Manipur', 'Keral', 'Madhya Pradesh']
 
@@ -27,13 +30,15 @@ export class RegisterComponent {
   }
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder , private dataService:DataService,private router:Router) {
+
+  }
   ngOnInit() {
     this.myForm();
   }
   myForm() {
     this.registerForm = this.fb.group({
-      img:['',[Validators.required]],
+      img: ['', [Validators.required]],
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -49,9 +54,10 @@ export class RegisterComponent {
       companyAddress2: ['']
     });
   }
-  submit() {
-    console.log(this.registerForm.value);
-  }
+  userregister() {
+ 
+      console.log(this.registerForm.value)
+    }
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   tags: Tag[] = [{
@@ -106,10 +112,11 @@ export class RegisterComponent {
       this.tags[index].name = value;
     }
   }
+ 
 }
 
 
-  
+
 
 
 

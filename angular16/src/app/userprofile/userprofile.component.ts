@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { UserprofileService } from '../userprofile.service';
 
 @Component({
   selector: 'app-userprofile',
@@ -8,9 +6,5 @@ import { UserprofileService } from '../userprofile.service';
   styleUrls: ['./userprofile.component.css']
 })
 export class UserprofileComponent {
-  constructor(private userprofile:UserprofileService){
-  }
-  ngOnInit(){
 
-}
 }
