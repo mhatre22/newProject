@@ -3,10 +3,10 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatChipInputEvent } from '@angular/material/chips';
-export interface Fruit {
+import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+export interface Tag {
   name: string;
-  fruits: string;
+  tags: string;
 }
 @Component({
   selector: 'app-register',
@@ -53,15 +53,15 @@ export class RegisterComponent {
   }
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  fruits: Fruit[] = [{
-    name: 'Lemon',
-    fruits: ''
+  tags: Tag[] = [{
+    name: 'Kho-kho',
+    tags: ''
   }, {
-    name: 'Lime',
-    fruits: ''
+    name: 'Football',
+    tags: ''
   }, {
-    name: 'Apple',
-    fruits: ''
+    name: 'Criket',
+    tags: ''
   }];
 
   announcer = inject(LiveAnnouncer);
@@ -71,42 +71,45 @@ export class RegisterComponent {
 
     // Add our fruit
     if (value) {
-      this.fruits.push({
+      this.tags.push({
         name: value,
-        fruits: ''
+        tags: ''
       });
     }
 
-    // Clear the input value
     event.chipInput!.clear();
   }
 
-  remove(fruit: String): void {
-    const index = this.fruits.indexOf(fruit);
+  remove(tag: Tag): void {
+    const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.tags.splice(index);
 
-      this.announcer.announce(`Removed ${fruit}`);
+      this.announcer.announce(`Removed ${tag}`);
     }
   }
 
-  edit(fruit: String, event: MatChipInputEvent) {
+  edit(tag: Tag, event: MatChipEditedEvent) {
     const value = event.value.trim();
 
-    // Remove fruit if it no longer has a name
+
     if (!value) {
-      this.remove(fruit);
+      this.remove(tag);
       return;
     }
 
-    // Edit existing fruit
-    const index = this.fruits.indexOf(fruit);
+
+    const index = this.tags.indexOf(tag);
     if (index >= 0) {
-      this.fruits[index] = value;
+      this.tags[index].name = value;
     }
   }
 }
+
+
+  
+
 
 
 

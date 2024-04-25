@@ -10,8 +10,9 @@
             <!-----Registration Form------>
             <div class="fit-form">
                 <form class="example-form" [formGroup]="registerForm">
-                    <div class="img">
-                    <img src="assets\img\upload.jpg" height="200" width="200"></div><br>
+
+                  <img src="assets\img\upload.jpg" height="150" width="150"><br>
+                  <a routerLink="#">Uplod your photo</a><br>
                     <!--firstname-->
                     &nbsp;<div class="row">
                         &nbsp;<div class="col-md-4">
@@ -21,7 +22,7 @@
                         <span class="err"*ngIf="registerForm.get('firstname')?.errors?.['required'] && !registerForm.get('firstname')?.valid && registerForm.get('firstname')?.touched">firstname
                             is required</span>
                         <!--lastname-->
-                        <div class="col-md-4">
+                        &nbsp; &nbsp;<div class="col-md-4">
                             <input type="text" class="form-control" placeholder="Last Name" formControlName="lastname">
                             <span class="err"*ngIf="registerForm.get('lastname')?.errors?.['required'] && !registerForm.get('lastname')?.valid && registerForm.get('lastname')?.touched">lastname is required</span>
                         </div>
@@ -42,7 +43,7 @@
                             <input formControlName="age" matSliderThumb>
                         </mat-slider>
                         <span class="err" *ngIf="registerForm.get('age')?.errors?.['required'] && !registerForm.get('age')?.valid && registerForm.get('age')?.touched">age is required</span>
-                    </div><br><br>
+                    </div>
                     <!---State-->
                     &nbsp;<div class="col-md-4">
                         <select class="form-control" id="state" formControlName=state>
@@ -81,34 +82,36 @@
   <!-- Company Address Fields -->
   
   <div *ngIf="registerForm.get('addressType')?.value === 'company'"><br>
-      <input type="text"  class="form-control"  formControlName="companyAddress1" placeholder="company Add1"><br>
+      <input type="text"  class="form-control"  formControlName="companyAddress1" placeholder="Comp Add1"><br>
       <span class="err" *ngIf="registerForm.get('companyAddress1')?.errors?.['required'] && !registerForm.get('companyAddress1')?.valid && registerForm.get('companyAddress1')?.touched"> address is required </span>
 
-      <input type="text" class="form-control"  formControlName="companyAddress2" placeholder="company Add2"><br>
+      <input type="text" class="form-control"  formControlName="companyAddress2" placeholder="Comp Add2"><br>
     </div>
-                    <!---Tag-->
-                 
-                    <mat-form-field class="example-chip-list">
-                        <mat-label>Favorite Fruits</mat-label>
-                        <mat-chip-grid #chipGrid aria-label="Enter fruits">
-                          <mat-chip-row *ngFor="let fruit of fruits"
-                                        (removed)="remove(fruit)"
+     <!---Tag-->
+                 <div class="row">
+                  
+                        <mat-chip-grid #chipGrid aria-label>
+                          <mat-chip-row *ngFor="let tag of tags"
+                                        (removed)="remove(tag)"
                                         [editable]="true"
-                                        (edited)="edit(fruit, $event)"
-                                        [aria-description]="'press enter to edit ' + fruit.name">
-                            {{fruit.name}}
-                            <button matChipRemove [attr.aria-label]="'remove ' + fruit.name">
+                                        (edited)="edit(tag, $event)"
+                                        [aria-description]="'press enter to edit ' + tag.name">
+                            {{tag.name}}
+                            <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
                               <mat-icon>cancel</mat-icon>
                             </button>
                           </mat-chip-row>
-                          <input formControlName="tag" placeholder="New fruit..."
+                          <input formControlName="tag" placeholder="tag.." class="form-control"
                                  [matChipInputFor]="chipGrid"
                                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                  [matChipInputAddOnBlur]="addOnBlur"
                                  (matChipInputTokenEnd)="add($event)"/>
                         </mat-chip-grid>
-                      </mat-form-field>
-                      
+                    </div>
+                    </div><br>
+                    <input type="checkbox">subscribe to newsletter&nbsp;
+                    <button type="button" (click)=submit() class="btn btn-primary">Register</button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-light">Cancel</button>&nbsp;
                 </form>
             </div>
             </div>
