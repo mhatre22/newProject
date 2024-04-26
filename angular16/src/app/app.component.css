@@ -8,12 +8,30 @@
 }
 .navigator{
     padding-left: 15px;
-    padding-top: 15px;
+    padding-top: 1px;
 
 }
-.d-flex{
-    flex: 0.8;
-    color: lightblue;
-    height: 35px;
-    border-right: 0px;
+.err{
+    color: red;
+    font-size: small;
 }
+
+
+.container{
+    width: 1000px;
+    height: 800px;
+ object-fit: cover;
+ object-position: center; 
+ }
+ .homecontent{
+     position: absolute;
+     top: 20%;
+     right: 40%;
+     object-position: center;
+ 
+ 
+ }
+ .homecontent{
+     color:rgb(8, 9, 10);
+ }
+ 
