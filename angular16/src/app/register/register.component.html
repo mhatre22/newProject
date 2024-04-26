@@ -9,43 +9,42 @@
             
             <!-----Registration Form------>
             <div class="fit-form">
-                <form [formGroup]="registerForm">
-
-                  <img src="assets\img\upload.jpg" height="150" width="150"><br>
+            <form [formGroup]="registerForm">
+                  <input type="image" formControlName="image"><img src="assets\img\upload.jpg" height="150" width="150" ><br>
                   <a routerLink="#">Uplod your photo</a><br>
                     <!--firstname-->
                     &nbsp;<div class="row">
                         &nbsp;<div class="col-md-4">
-                            <input type="text" class="form-control" placeholder="First Name" formControlName="first">
+                            <input type="text" formControlName="firstName" class="form-control" placeholder="First Name" >
                         </div>
-                        <span class="err"*ngIf="registerForm.get('first')?.errors?.['required'] && !registerForm.get('first')?.valid && registerForm.get('first')?.touched">firstname
+                        <span class="err"*ngIf="registerForm.get('firstName')?.errors?.['required'] && !registerForm.get('firstName')?.valid && registerForm.get('firstName')?.touched">firstname
                             is required</span>
                         <!--lastname-->
                         &nbsp; &nbsp;<div class="col-md-4">
-                            <input type="text" class="form-control" placeholder="Last Name" formControlName="last">
-                            <span class="err"*ngIf="registerForm.get('last')?.errors?.['required'] && !registerForm.get('last')?.valid && registerForm.get('last')?.touched">lastname is required</span>
+                            <input type="text"  formControlName="lastName" class="form-control" placeholder="Last Name">
+                            <span class="err"*ngIf="registerForm.get('lastName')?.errors?.['required'] && !registerForm.get('lastName')?.valid && registerForm.get('lastName')?.touched">lastname is required</span>
                         </div>
                     </div><br>
                     <!---Email-->
                     <div class="col-md-4">
-                        <input type="email" class="form-control" placeholder="EmailID" formControlName="email">
+                        <input type="email" formControlName="email" class="form-control" placeholder="EmailID" >
                         <span class="err" *ngIf="registerForm.get('email')?.errors?.['required'] && !registerForm.get('email')?.valid && registerForm.get('email')?.touched">email is required</span>
                     </div><br>
                     <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="+55-66778899" formControlName="contact">
+                        <input type="text" formControlName="contact" class="form-control" placeholder="+55-66778899" >
                         <span class="err" *ngIf="registerForm.get('contact')?.errors?.['required'] && !registerForm.get('contact')?.valid && registerForm.get('contact')?.touched">contact is required</span>
                     </div>&nbsp;
                     <!--age-->
                     <div class="col-md-4">
-                        <label>Age : </label>
+                    <label>Age:</label>
                         <mat-slider min="20" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel">
-                            <input formControlName="age" matSliderThumb>
+                            <input type="range" formControlName="age" matSliderThumb>
                         </mat-slider>
                         <span class="err" *ngIf="registerForm.get('age')?.errors?.['required'] && !registerForm.get('age')?.valid && registerForm.get('age')?.touched">age is required</span>
                     </div>
                     <!---State-->
                     &nbsp;<div class="col-md-4">
-                        <select class="form-control" id="state" formControlName=state>
+                        <select class="form-control" formControlName=state  id="state" >
                             <option value="">States</option>
                             <option *ngFor="let state of states" [value]="state">{{state}}</option>     
                         </select>
@@ -54,7 +53,7 @@
                     </div><br>
                     <!---Country-->
                     <div class="col-md-4">
-                        <select class="form-control" id="country" formControlName="country">
+                        <select  formControlName="country" class="form-control" id="country" >
                             <option value="">Country</option>
                             <option *ngFor="let country of countries" [value]="country">{{country}}</option>
                         </select>
@@ -64,7 +63,7 @@
                     <!--Address-->
                     <div class="col-md-4">
                         <h3><label>Address Type:</label></h3>
-                    <select class="form-control" formControlName="addressType">
+                    <select type="option" class="form-control" formControlName="addressType">
                      <span class="err" *ngIf="registerForm.get('addressType')?.errors?.['required'] && !registerForm.get('addressType')?.valid && registerForm.get('addressType')?.touched">address type required </span>
                       <option value="home">Home</option>
                       <option value="company">Company</option>
@@ -100,7 +99,7 @@
                               <mat-icon>cancel</mat-icon>
                             </button>
                           </mat-chip-row>
-                          <input formControlName="tag" placeholder="tag.." class="form-control"
+                          <input type="text" formControlName="tag" placeholder="tag.." class="form-control"
                                  [matChipInputFor]="chipGrid"
                                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                  [matChipInputAddOnBlur]="addOnBlur"
@@ -110,9 +109,11 @@
                         </mat-chip-grid>
                  
                     </div><br>
-                    <input type="checkbox">subscribe to newsletter&nbsp;
-                    <button (click)="userregister()" class="btn btn-primary">Register</button>&nbsp;&nbsp;
-                    <button  class="btn btn-light">Cancel</button>&nbsp;
+                    <input type="checkbox" >subscribe to newsletter&nbsp;
+                    
+ 
+                    <button type="button" (click)="userRegister()" class="btn btn-primary">Register</button>&nbsp;&nbsp;
+                    <button type="button"  class="btn btn-light">Cancel</button>&nbsp;
                 </form>
             </div>
             </div>

@@ -4,8 +4,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
-import { DataService } from '../data.service';
-import { Router } from '@angular/router';
+
 
 export interface Tag {
   name: string;
@@ -21,7 +20,7 @@ export class RegisterComponent {
   countries: String[] = ['India', 'Canada', 'USA', 'Australia', 'America', 'Kenia']
   states: String[] = ['Maharashtra', 'Goa', 'Bihar', 'Manipur', 'Keral', 'Madhya Pradesh']
 
-  constructor(private fb: FormBuilder , private dataService:DataService,private router:Router) {
+  constructor(private fb: FormBuilder) {
 
   }
   formatLabel(value: number): string {
@@ -34,10 +33,10 @@ export class RegisterComponent {
     this.myForm();
   }
   myForm() {
-    this.registerForm = this.fb.group({
-      img: ['', [Validators.required]],
-      first: ['', [Validators.required]],
-      last: ['', [Validators.required]],
+   this.registerForm = this.fb.group({
+      image: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       age: ['', Validators.required],
       tag: ['', Validators.required],
@@ -69,7 +68,7 @@ export class RegisterComponent {
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    // Add our fruit
+  //add value
     if (value) {
       this.tags.push({
         name: value,
@@ -105,7 +104,7 @@ export class RegisterComponent {
       this.tags[index].name = value;
     }
   }
-  userregister() {
+  userRegister() {
     console.log(this.registerForm.value)
     }
  
