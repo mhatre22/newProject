@@ -9,21 +9,21 @@
             
             <!-----Registration Form------>
             <div class="fit-form">
-                <form class="example-form" [formGroup]="registerForm">
+                <form [formGroup]="registerForm">
 
                   <img src="assets\img\upload.jpg" height="150" width="150"><br>
                   <a routerLink="#">Uplod your photo</a><br>
                     <!--firstname-->
                     &nbsp;<div class="row">
                         &nbsp;<div class="col-md-4">
-                            <input type="text" class="form-control" placeholder="First Name" formControlName="firstname">
+                            <input type="text" class="form-control" placeholder="First Name" formControlName="first">
                         </div>
-                        <span class="err"*ngIf="registerForm.get('firstname')?.errors?.['required'] && !registerForm.get('firstname')?.valid && registerForm.get('firstname')?.touched">firstname
+                        <span class="err"*ngIf="registerForm.get('first')?.errors?.['required'] && !registerForm.get('first')?.valid && registerForm.get('first')?.touched">firstname
                             is required</span>
                         <!--lastname-->
                         &nbsp; &nbsp;<div class="col-md-4">
-                            <input type="text" class="form-control" placeholder="Last Name" formControlName="lastname">
-                            <span class="err"*ngIf="registerForm.get('lastname')?.errors?.['required'] && !registerForm.get('lastname')?.valid && registerForm.get('lastname')?.touched">lastname is required</span>
+                            <input type="text" class="form-control" placeholder="Last Name" formControlName="last">
+                            <span class="err"*ngIf="registerForm.get('last')?.errors?.['required'] && !registerForm.get('last')?.valid && registerForm.get('last')?.touched">lastname is required</span>
                         </div>
                     </div><br>
                     <!---Email-->

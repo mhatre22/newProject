@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { AboutComponent } from './about/about.component';
 import { RegisterComponent } from './register/register.component';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipsModule} from '@angular/material/chips';
@@ -23,7 +23,6 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
   declarations: [
     AppComponent,
     HomeComponent,
-
     JobsComponent,
      AboutComponent,
      RegisterComponent,
@@ -32,10 +31,10 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
     MatSliderModule,
 MatIconModule,
 MatChipsModule,

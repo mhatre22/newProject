@@ -21,17 +21,14 @@ export class RegisterComponent {
   countries: String[] = ['India', 'Canada', 'USA', 'Australia', 'America', 'Kenia']
   states: String[] = ['Maharashtra', 'Goa', 'Bihar', 'Manipur', 'Keral', 'Madhya Pradesh']
 
+  constructor(private fb: FormBuilder , private dataService:DataService,private router:Router) {
 
+  }
   formatLabel(value: number): string {
     if (value >= 100) {
       return Math.round(value / 100) + 'Age';
     }
     return `${value}`;
-  }
-
-
-  constructor(private fb: FormBuilder , private dataService:DataService,private router:Router) {
-
   }
   ngOnInit() {
     this.myForm();
@@ -39,8 +36,8 @@ export class RegisterComponent {
   myForm() {
     this.registerForm = this.fb.group({
       img: ['', [Validators.required]],
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
+      first: ['', [Validators.required]],
+      last: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       age: ['', Validators.required],
       tag: ['', Validators.required],
@@ -54,10 +51,6 @@ export class RegisterComponent {
       companyAddress2: ['']
     });
   }
-  userregister() {
- 
-      console.log(this.registerForm.value)
-    }
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   tags: Tag[] = [{
@@ -112,6 +105,9 @@ export class RegisterComponent {
       this.tags[index].name = value;
     }
   }
+  userregister() {
+    console.log(this.registerForm.value)
+    }
  
 }
 

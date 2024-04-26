@@ -8,8 +8,5 @@ import { Observable } from 'rxjs';
 export class DataService {
 
   constructor( private http:HttpClient) { }
-  addUser(data:any):Observable<any>{
-    return this.http.post("http://localhost:3000/userRegister",data)
-
-  }
 }
+
