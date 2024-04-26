@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from './data.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { UserProfile } from './user.model';
 export interface Tag {
   name: string;
   tags: string;
@@ -17,13 +18,16 @@ export interface Tag {
 export class AppComponent {
   title = 'angular16';
 
-  registerForm! : FormGroup;
-  adduserResponse: any;
- 
+  registerForm : FormGroup;
+userProfile:UserProfile[];
+userProfileDisplay: UserProfile[];
+ adduser :any;
   countries: String[] = ['India', 'Canada', 'USA', 'Australia', 'America', 'Kenia']
   states: String[] = ['Maharashtra', 'Goa', 'Bihar', 'Manipur', 'Keral', 'Madhya Pradesh']
   constructor(private fb: FormBuilder, private dataservice: DataService ) {
-
+    this.registerForm = fb.group({});
+    this.userProfile =[];
+    this.userProfileDisplay = this.userProfile;
   }
   formatLabel(value: number): string {
     if (value >= 100) {
@@ -31,27 +35,33 @@ export class AppComponent {
     }
     return `${value}`;
   }
-  ngOnInit() {
-    this.myForm();
-  }
-  myForm() {
+ngOnInit():void{
     this.registerForm = this.fb.group({
       image: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      lastName:  ['', [Validators.required]], 
       email: ['', [Validators.required, Validators.email]],
-      age: ['', [Validators.required]],
-      tag: ['', [Validators.required]],
-      contact: ['', [Validators.required]],
-      country: ['', [Validators.required]],
-      state: ['', [Validators.required]],
-      addressType: ['home', [Validators.required]],
-      address1: ['', [Validators.required]],
-      address2: ['', [Validators.required]],
-      companyAddress1: ['', [Validators.required]],
-      companyAddress2: ['', [Validators.required]],
+      age: ['', [Validators.required]], 
+      tag:  ['', [Validators.required]], 
+      contact:  ['', [Validators.required]], 
+      country: ['', [Validators.required]], 
+      state:  ['', [Validators.required]], 
+      addressType:  ['home', [Validators.required]], 
+      address1:  ['', [Validators.required]], 
+      address2:  ['', [Validators.required]], 
+      companyAddress1:  ['', [Validators.required]], 
+      companyAddress2:  ['', [Validators.required]], 
     });
+    this.dataservice.getUserProfile(this.registerForm.value).subscribe(res =>{
+     for(let user of res){
+      this.userProfile.unshift(res);
+     }
+     this.userProfileDisplay = this.userProfile;
+     
+
+    })
   }
+
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   tags: Tag[] = [{
@@ -106,20 +116,30 @@ export class AppComponent {
       this.tags[index].name = value;
     }
   }
-  userRegister() {
-  console.log(this.registerForm.value)
-    this.dataservice.addUserProfile(this.registerForm.value).subscribe(response => {
-      this.adduserResponse = response;
-      alert("Added User Successfully")
-     
 
+   ngAfterViewInit():void{
+
+   }
+   userRegister(){
+    console.log(this.registerForm.value)
+    this.dataservice.addUserProfile(this.registerForm.value).subscribe(data =>{
+      this.adduser=data;
     })
-   
-
+   }
     
-  }
+   removeUserProfile(event:any){
+    this.dataservice.cancelUserProfile(event).subscribe(res=>{
+      this.userProfile = res;
+    })
 
-}
+    }
+   }
+
+
+            
+  
+
+
 
 
 

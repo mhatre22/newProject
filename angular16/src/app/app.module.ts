@@ -11,11 +11,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
+import { UserdisplayComponent } from './userdisplay/userdisplay.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    UserdisplayComponent,
  
 
      
