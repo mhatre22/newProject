@@ -3,6 +3,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+import { DataService } from '../data.service';
 export interface Tag {
   name: string;
   tags: string;
@@ -14,10 +15,10 @@ export interface Tag {
 })
 export class RegisterComponent implements OnInit{
   registerForm! : FormGroup
+  adduserResponse :any;
   countries: String[] = ['India', 'Canada', 'USA', 'Australia', 'America', 'Kenia']
   states: String[] = ['Maharashtra', 'Goa', 'Bihar', 'Manipur', 'Keral', 'Madhya Pradesh']
-
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private dataservice:DataService) {
 
   }
   formatLabel(value: number): string {
@@ -103,11 +104,12 @@ export class RegisterComponent implements OnInit{
   }
   userRegister() {
     console.log(this.registerForm.value)
-    }
- 
+    this.dataservice.addUserProfile(this.registerForm.value).subscribe(response =>{
+      this.adduserResponse =response;
+    })
+   
+  }
 }
-
-
 
 
 

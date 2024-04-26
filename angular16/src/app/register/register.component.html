@@ -8,43 +8,43 @@
             </div>
             
             <!-----Registration Form------>
-            <form [formGroup]="registerForm" class="fit-form">
+            <form  class="fit-form" [formGroup]="registerForm">
             
-                  <input formControlName="image" type="image" ><img src="assets\img\upload.jpg" height="150" width="150" ><br>
+                  <input type="image" formControlName="image" ><img src="assets\img\upload.jpg" height="150" width="150" ><br>
                   <a routerLink="#">Uplod your photo</a><br>
                     <!--firstname-->
                     &nbsp;<div class="row">
                         &nbsp;<div class="col-md-4">
-                            <input formControlName="firstName" type="text"  class="form-control" placeholder="First Name" >
+                            <input type="text"  formControlName="firstName"  class="form-control" placeholder="First Name" >
                         </div>
                         <span class="err"*ngIf="registerForm.get('firstName')?.errors?.['required'] && !registerForm.get('firstName')?.valid && registerForm.get('firstName')?.touched">firstname
                             is required</span>
                         <!--lastname-->
                         &nbsp; &nbsp;<div class="col-md-4">
-                            <input  formControlName="lastName" type="text"  class="form-control" placeholder="Last Name">
+                            <input  type="text"  formControlName="lastName"  class="form-control" placeholder="Last Name">
                             <span class="err"*ngIf="registerForm.get('lastName')?.errors?.['required'] && !registerForm.get('lastName')?.valid && registerForm.get('lastName')?.touched">lastname is required</span>
                         </div>
                     </div><br>
                     <!---Email-->
                     <div class="col-md-4">
-                        <input formControlName="email"  type="email" class="form-control" placeholder="EmailID" >
+                        <input  type="email"  formControlName="email" class="form-control" placeholder="EmailID" >
                         <span class="err" *ngIf="registerForm.get('email')?.errors?.['required'] && !registerForm.get('email')?.valid && registerForm.get('email')?.touched">email is required</span>
                     </div><br>
                     <div class="col-md-4">
-                        <input formControlName="contact" type="tel"  class="form-control" placeholder="+55-66778899" >
+                        <input  type="tel" formControlName="contact"  class="form-control" placeholder="+55-66778899" >
                         <span class="err" *ngIf="registerForm.get('contact')?.errors?.['required'] && !registerForm.get('contact')?.valid && registerForm.get('contact')?.touched">contact is required</span>
                     </div>&nbsp;
                     <!--age-->
                     <div class="col-md-4">
                     <label>Age:</label>
                         <mat-slider min="20" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel">
-                            <input  formControlName="age" type="range" matSliderThumb>
+                            <input   type="range" formControlName="age" matSliderThumb>
                         </mat-slider>
                         <span class="err" *ngIf="registerForm.get('age')?.errors?.['required'] && !registerForm.get('age')?.valid && registerForm.get('age')?.touched">age is required</span>
                     </div>
                     <!---State-->
                     &nbsp;<div class="col-md-4">
-                        <select formControlName="state" class="form-control"   id="state" >
+                        <select type="option" formControlName="state" class="form-control"   id="state" >
                             <option value="">States</option>
                            <option *ngFor="let state of states" [value]="state">{{state}}</option>
                         </select>
@@ -53,7 +53,7 @@
                     </div><br>
                     <!---Country-->
                     <div class="col-md-4">
-                        <select  formControlName="country" type="option" class="form-control" id="country" >
+                        <select   type="option" formControlName="country" class="form-control" id="country" >
                             <option value="">Country</option>
                            <option *ngFor="let country of countries" [value]="country">{{country}}</option>
                         </select>
@@ -63,7 +63,7 @@
                     <!--Address-->
                     <div class="col-md-4">
                         <h3><label>Address Type:</label></h3>
-                    <select  formControlName="addressType" type="option" class="form-control" >
+                    <select  type="option"  formControlName="addressType" class="form-control" >
                      <span class="err" *ngIf="registerForm.get('addressType')?.errors?.['required'] && !registerForm.get('addressType')?.valid && registerForm.get('addressType')?.touched">address type required </span>
                       <option value="home">Home</option>
                       <option value="company">Company</option>
@@ -72,18 +72,18 @@
                     <!-- Home Address Fields -->
                         
            <div *ngIf="registerForm.get('addressType')?.value === 'home'"><br>
-       <input   formControlName="address1" class="form-control" type="text"  placeholder="Home Add1"><br>
+       <input    type="text" formControlName="address1" class="form-control"  placeholder="Home Add1"><br>
        <span class="err" *ngIf="registerForm.get('address1')?.errors?.['required'] && !registerForm.get('address1')?.valid && registerForm.get('address1')?.touched"> address is required </span>
 
-      <input   formControlName="address2" class="form-control" type="text"  placeholder="Home Add2"><br>
+      <input  type="text"   formControlName="address2" class="form-control" placeholder="Home Add2"><br>
     </div>
   <!-- Company Address Fields -->
   
   <div *ngIf="registerForm.get('addressType')?.value === 'company'"><br>
-      <input formControlName="companyAddress1"  type="text"  class="form-control"   placeholder="Comp Add1"><br>
+      <input type="text" formControlName="companyAddress1"    class="form-control"   placeholder="Comp Add1"><br>
       <span class="err" *ngIf="registerForm.get('companyAddress1')?.errors?.['required'] && !registerForm.get('companyAddress1')?.valid && registerForm.get('companyAddress1')?.touched"> address is required </span>
 
-      <input formControlName="companyAddress2" type="text" class="form-control"   placeholder="Comp Add2"><br>
+      <input  type="text" formControlName="companyAddress2" class="form-control"   placeholder="Comp Add2"><br>
     </div>
      <!---Tag-->
                         <mat-chip-grid #chipGrid aria-label>
@@ -103,13 +103,9 @@
                                  [matChipInputAddOnBlur]="addOnBlur"
                                  (matChipInputTokenEnd)="add($event)"/>
                                  <span class="err" *ngIf="registerForm.get('tag')?.errors?.['required'] && !registerForm.get('tag')?.valid && registerForm.get('tag')?.touched"> tag is required </span>
- 
                         </mat-chip-grid>
-                 
                     </div><br>
                     <input type="checkbox" >subscribe to newsletter&nbsp;
-                    
- 
                     <button type="button" (click)="userRegister()" class="btn btn-primary">Register</button>&nbsp;&nbsp;
                     <button type="button"  class="btn btn-light">Cancel</button>&nbsp;
                 </form>

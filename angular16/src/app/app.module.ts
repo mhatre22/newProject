@@ -13,7 +13,7 @@ import { MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
-import { UserprofileComponent } from './userprofile/userprofile.component';
+
 
 
 
@@ -24,7 +24,7 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
     JobsComponent,
      AboutComponent,
      RegisterComponent,
-     UserprofileComponent
+     
    
   ],
   imports: [
